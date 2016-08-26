@@ -4,8 +4,10 @@
 -- #              Copyright © 2016 imMigno                  #
 -- ##########################################################
 
--- Map specific configurations
+-- Level specific configurations
+SwapCap = 70
 
+-- Map specific configurations
 -- Please insert the Mapnames of your Leveling routine
 Pokecenter 		= "Pokecenter Mauville City"
 City 			= "Mauville City"

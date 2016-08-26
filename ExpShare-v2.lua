@@ -217,17 +217,19 @@ function moveToDestination()
 	end
 end
 
-function getHealthandPP(index)
-	
-	-- Wait for ProShine update for function "getPokemonMoves()"
-
-end
-
 function getHealed()
 	if getMapName() == "Indigo Plateau Center" then
 		talkToNpcOnCell(4, 22)
 	else
 		usePokecenter()
+	end
+end
+
+function capReached()
+	if getPokemonLevel(1) <= SwapCap then
+		return true
+	else
+		return false
 	end
 end
 
@@ -300,7 +302,9 @@ end
 function onBattleAction()
 	-- 2 Pokemon Usable
 	if getUsablePokemonCount() == 2 and getPokemonHealthPercent(2) >= 15 then
-		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 2) and getPokemonHealthPercent(2) >= 15 then
+		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 2) and getPokemonHealthPercent(2) >= 15 and capReached() then
+			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
+		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 2) and getPokemonHealthPercent(2) >= 15 then
 			sendPokemon(2)
 			log(" ")
 			log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(2))
@@ -313,7 +317,9 @@ function onBattleAction()
 		
 	-- 3 Pokemon Usable
 	elseif getUsablePokemonCount() == 3 and getPokemonHealthPercent(3) >= 15 then
-		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 3) and getPokemonHealthPercent(3) >= 15 then
+		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 3) and getPokemonHealthPercent(2) >= 15 and capReached() then
+			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
+		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 3) and getPokemonHealthPercent(3) >= 15 then
 			sendPokemon(3)
 			log(" ")
 			log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(3))
@@ -326,7 +332,9 @@ function onBattleAction()
 
 	-- 4 Pokemon Usable
 	elseif getUsablePokemonCount() == 4 and getPokemonHealthPercent(4) >= 15 then
-		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 4) and getPokemonHealthPercent(4) >= 15 then
+		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 4) and getPokemonHealthPercent(2) >= 15 and capReached() then
+			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
+		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 4) and getPokemonHealthPercent(4) >= 15 then
 			sendPokemon(4)
 			log(" ")
 			log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(4))
@@ -339,7 +347,9 @@ function onBattleAction()
 
 	-- 5 Pokemon Usable
 	elseif getUsablePokemonCount() == 5 and getPokemonHealthPercent(5) >= 15 then
-		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 5) and getPokemonHealthPercent(5) >= 15 then
+		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 5) and getPokemonHealthPercent(2) >= 15 and capReached() then
+			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
+		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 5) and getPokemonHealthPercent(5) >= 15 then
 			sendPokemon(5)
 			log(" ")
 			log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(5))
@@ -352,7 +362,9 @@ function onBattleAction()
 
 	-- 6 Pokemon usable
 	elseif getUsablePokemonCount() == 6 and getPokemonHealthPercent(6) >= 15 then
-		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(6) >= 15 then
+		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(2) >= 15 and capReached() then
+			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
+		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(6) >= 15 then
 			sendPokemon(6)
 			log(" ")
 			log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(6))
