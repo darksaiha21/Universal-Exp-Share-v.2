@@ -16,3 +16,8 @@ version 2
 ## Known Bugs:
 - [ ] Repeating heal at Pokecenters - Make sure you got no "Zero damage Moves" on any Pokemon
 - [ ] "Could not find Nurse Joy" - Send me the Mapname where that happens and I'll fix it ASAP
+
+## Whats planned next:
+- [ ] Config to level a specific Pokemon or the whole Team
+- [ ] Dijkstra-Pathfinding for less code inside the "onPathAction" function
+- [ ] Exceptions for Pokemon without DamageMoves
