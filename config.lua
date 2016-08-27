@@ -8,7 +8,7 @@
 StopLevel = 100 										-- The Bot will shutdown of your Team is above or equal to that level
 
 -- Level specific configurations
-SwapCap = 9
+SwapCap = 70
 
 -- Map specific configurations
 -- Please insert the Mapnames of your Leveling routine
