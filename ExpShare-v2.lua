@@ -130,8 +130,15 @@ end
 -- Shortcut -> GoToLevelLocation
 function moveToDestination()
 	-- walk to Destination
-	-- Path of 0 Maps between City and LevelSpot	
-	if path == 0 then
+	-- Path of no City between Pokecenter and LevelSpot
+	if path == 0 and City == "" then
+		if getMapName() == Pokecenter then
+			moveToMap(LevelLocation)
+		elseif getMapName() == LevelLocation then
+			getLevelSpot()
+		end
+	-- Path of 0 Maps between City and LevelSpot
+	elseif path == 0 then
 		if getMapName() == Pokecenter then
 			moveToMap(City)
 		elseif getMapName() == City then
