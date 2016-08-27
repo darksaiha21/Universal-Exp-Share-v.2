@@ -9,9 +9,9 @@ dofile "config.lua"
 
 function onStart()
 	log(" ")
-	log("============== WELCOME | START ===============")
+	log("=========== WELCOME | START ============")
 	log("Welcome to the Universal ExpSharing by imMigno")
-	log("==========================================")
+	log("====================================")
 	log(" ")
 
 	path = 0
@@ -220,16 +220,12 @@ end
 function getHealed()
 	if getMapName() == "Indigo Plateau Center" then
 		talkToNpcOnCell(4, 22)
+
+	elseif getMapName()=="Seafoam B4F" then
+        talkToNpcOnCell(59, 13)
+
 	else
 		usePokecenter()
-	end
-end
-
-function capReached()
-	if getPokemonLevel(1) <= SwapCap then
-		return true
-	else
-		return false
 	end
 end
 
@@ -237,7 +233,15 @@ function onPathAction()
 	if getTeamSize() == 2 then
 		if isPokemonUsable(1) and isPokemonUsable(2) and getPokemonHealthPercent(2) >= 15 then
 			if isTeamRangeSortedByLevelAscending(1, 2) then
-				moveToDestination()
+				if getPokemonLevel(1) >= StopLevel and getPokemonLevel(2) >= StopLevel then
+					log(" ")
+					log("============ FINISHED LEVELING ============")
+					log("The StopLevel has been reached, Bot stopped")
+					log("===========================================")
+					fatal(" ")
+				else
+					moveToDestination()
+				end
 			else
 				return sortTeamRangeByLevelAscending(1, 2)
 			end
@@ -248,7 +252,15 @@ function onPathAction()
 	elseif getTeamSize() == 3 then
 		if isPokemonUsable(1) and isPokemonUsable(2) and isPokemonUsable(3) and getPokemonHealthPercent(3) >= 15 then
 			if isTeamRangeSortedByLevelAscending(1, 3) then
-				moveToDestination()
+				if getPokemonLevel(1) >= StopLevel and getPokemonLevel(2) >= StopLevel and getPokemonLevel(3) >= StopLevel then
+					log(" ")
+					log("============ FINISHED LEVELING ============")
+					log("The StopLevel has been reached, Bot stopped")
+					log("===========================================")
+					fatal(" ")
+				else
+					moveToDestination()
+				end
 			else
 				return sortTeamRangeByLevelAscending(1, 3)
 			end
@@ -259,7 +271,15 @@ function onPathAction()
 	elseif getTeamSize() == 4 then
 		if isPokemonUsable(1) and isPokemonUsable(2) and isPokemonUsable(3) and isPokemonUsable(4) and getPokemonHealthPercent(4) >= 15 then
 			if isTeamRangeSortedByLevelAscending(1, 4) then
-				moveToDestination()
+				if getPokemonLevel(1) >= StopLevel and getPokemonLevel(2) >= StopLevel and getPokemonLevel(3) >= StopLevel and getPokemonLevel(4) >= StopLevel then
+					log(" ")
+					log("============ FINISHED LEVELING ============")
+					log("The StopLevel has been reached, Bot stopped")
+					log("===========================================")
+					fatal(" ")
+				else
+					moveToDestination()
+				end
 			else
 				return sortTeamRangeByLevelAscending(1, 4)
 			end
@@ -270,7 +290,15 @@ function onPathAction()
 	elseif getTeamSize() == 5 then
 		if isPokemonUsable(1) and isPokemonUsable(2) and isPokemonUsable(3) and isPokemonUsable(4) and isPokemonUsable(5) and getPokemonHealthPercent(5) >= 15 then
 		 	if isTeamRangeSortedByLevelAscending(1, 5) then
-		 		moveToDestination()
+		 		if getPokemonLevel(1) >= StopLevel and getPokemonLevel(2) >= StopLevel and getPokemonLevel(3) >= StopLevel and getPokemonLevel(4) >= StopLevel and getPokemonLevel(5) >= StopLevel then
+					log(" ")
+					log("============ FINISHED LEVELING ============")
+					log("The StopLevel has been reached, Bot stopped")
+					log("===========================================")
+					fatal(" ")
+				else
+					moveToDestination()
+				end
 		 	else
 		 		return sortTeamRangeByLevelAscending(1, 5)
 		 	end
@@ -281,7 +309,15 @@ function onPathAction()
 	elseif getTeamSize() == 6 then
 		if isPokemonUsable(1) and isPokemonUsable(2) and isPokemonUsable(3) and isPokemonUsable(4) and isPokemonUsable(5) and isPokemonUsable(6) and getPokemonHealthPercent(6) >= 15 then
 			if isTeamRangeSortedByLevelAscending(1, 6) then
-				moveToDestination()
+				if getPokemonLevel(1) >= StopLevel and getPokemonLevel(2) >= StopLevel and getPokemonLevel(3) >= StopLevel and getPokemonLevel(4) >= StopLevel and getPokemonLevel(5) >= StopLevel and getPokemonLevel(6) >= StopLevel then
+					log(" ")
+					log("============ FINISHED LEVELING ============")
+					log("The StopLevel has been reached, Bot stopped")
+					log("===========================================")
+					fatal(" ")
+				else
+					moveToDestination()
+				end
 			else
 				return sortTeamRangeByLevelAscending(1, 6)
 			end
@@ -302,9 +338,9 @@ end
 function onBattleAction()
 	-- 2 Pokemon Usable
 	if getUsablePokemonCount() == 2 and getPokemonHealthPercent(2) >= 15 then
-		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 2) and getPokemonHealthPercent(2) >= 15 and capReached() then
+		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 2) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) >= SwapCap then
 			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
-		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 2) and getPokemonHealthPercent(2) >= 15 then
+		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 2) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) < SwapCap then
 			sendPokemon(2)
 			log(" ")
 			log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(2))
@@ -317,9 +353,9 @@ function onBattleAction()
 		
 	-- 3 Pokemon Usable
 	elseif getUsablePokemonCount() == 3 and getPokemonHealthPercent(3) >= 15 then
-		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 3) and getPokemonHealthPercent(2) >= 15 and capReached() then
+		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 3) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) >= SwapCap then
 			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
-		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 3) and getPokemonHealthPercent(3) >= 15 then
+		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 3) and getPokemonHealthPercent(3) >= 15 and getPokemonLevel(1) < SwapCap then
 			sendPokemon(3)
 			log(" ")
 			log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(3))
@@ -332,9 +368,9 @@ function onBattleAction()
 
 	-- 4 Pokemon Usable
 	elseif getUsablePokemonCount() == 4 and getPokemonHealthPercent(4) >= 15 then
-		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 4) and getPokemonHealthPercent(2) >= 15 and capReached() then
+		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 4) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) >= SwapCap then
 			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
-		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 4) and getPokemonHealthPercent(4) >= 15 then
+		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 4) and getPokemonHealthPercent(4) >= 15 and getPokemonLevel(1) < SwapCap then
 			sendPokemon(4)
 			log(" ")
 			log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(4))
@@ -347,9 +383,9 @@ function onBattleAction()
 
 	-- 5 Pokemon Usable
 	elseif getUsablePokemonCount() == 5 and getPokemonHealthPercent(5) >= 15 then
-		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 5) and getPokemonHealthPercent(2) >= 15 and capReached() then
+		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 5) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) >= SwapCap then
 			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
-		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 5) and getPokemonHealthPercent(5) >= 15 then
+		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 5) and getPokemonHealthPercent(5) >= 15 and getPokemonLevel(1) < SwapCap then
 			sendPokemon(5)
 			log(" ")
 			log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(5))
@@ -362,9 +398,9 @@ function onBattleAction()
 
 	-- 6 Pokemon usable
 	elseif getUsablePokemonCount() == 6 and getPokemonHealthPercent(6) >= 15 then
-		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(2) >= 15 and capReached() then
+		if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) >= SwapCap then
 			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
-		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(6) >= 15 then
+		elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(6) >= 15 and getPokemonLevel(1) < SwapCap then
 			sendPokemon(6)
 			log(" ")
 			log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(6))
