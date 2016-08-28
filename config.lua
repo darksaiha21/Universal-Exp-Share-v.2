@@ -12,21 +12,21 @@ SwapCap = 70
 
 -- Map specific configurations
 -- Please insert the Mapnames of your Leveling routine
-Pokecenter 		= "Indigo Plateau Center" 			-- Name of your Pokecenter
-City 			= "Indigo Plateau" 						-- Name of your "City" ( usually the Map before the Pokecenter )
-Map1 			= ""						 			-- Map 1 between LevelLocation and City 
-Map2 			= ""									-- Map 1 between LevelLocation and City 
-Map3 			= ""									-- Map 1 between LevelLocation and City 
-Map4 			= ""									-- Map 1 between LevelLocation and City 
-Map5 			= ""									-- Map 1 between LevelLocation and City 
-LevelLocation 	= "Victory Road Kanto 3F"							-- LevelLocation / EndLocation ( this is where you want to go and level your Pokemon ) 
+Pokecenter = "Seafoam B4F"
+City = ""
+Map1 = ""
+Map2 = ""
+Map3 = ""
+Map4 = ""
+Map5 = ""
+LevelLocation = "Seafoam B4F"
 
 -- Please specify where to level
 -- Avaiable options: "Grass" , "Rectangle" , "Water"
-LevelSpot 		= "Rectangle"
+LevelSpot = "Rectangle"
 
 -- Leave this blank or unchanged if you are using LevelSpot = "Grass" or "Water"
-minX 			= 46
-minY 			= 14
-maxX 			= 47
-maxY 			= 22
+minX = 56
+minY = 14
+maxX = 59
+maxY = 18
