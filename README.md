@@ -7,6 +7,7 @@ version 2
 - [x] Better and less complex config.lua
 - [x] Level your whole Team ( Questing.lua style )
 - [x] LearnMoves support ( Questing.lua style )
+- [x] Anti-Trap Function
 
 ## Credits:
 - SCode - For helping me with all the testing / bugfixing and debugging
