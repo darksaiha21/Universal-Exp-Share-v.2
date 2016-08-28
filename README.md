@@ -1,5 +1,6 @@
 ## [ ProShine ] Universal ExpShare
-version 2
+Latest update: 08-28-2016 | 10.50 PM
+Latest Version: 2.0.5
 
 ## New / Changed features
 - [x] Complete rewrite
@@ -23,3 +24,13 @@ version 2
 - [ ] Config to level a specific Pokemon or the whole Team
 - [ ] Dijkstra-Pathfinding for less code inside the "onPathAction" function
 - [ ] Exceptions for Pokemon without DamageMoves
+
+## Changelog:
+| Date          | Version       | Changes                                                     |
+| ------------- |:-------------:| -----------------------------------------------------------:|
+| 08-26-2016    | 2.0.0         | Initual Upload                                              |
+| 08-26-2016    | 2.0.1         | Readded the SwapCap Feature from version 1.0                |
+| 08-27-2016    | 2.0.2         | Added StopLevel & Added Seafoam Support                     |
+| 08-27-2016    | 2.0.3         | Added Route 3 Support                                       |
+| 08-28-2016    | 2.0.4         | Fixed Seafoam Support, Added Anti-Trap & Shiny Support      |
+| 08-28-2016    | 2.0.5         | Fixed the random "no Action executed" Bug                   |

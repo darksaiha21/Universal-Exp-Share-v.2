@@ -13,18 +13,17 @@ SwapCap = 70
 
 -- Map specific configurations
 -- Please insert the Mapnames of your Leveling routine
-Pokecenter = "Pokecenter Cinnabar"
-City = "Cinnabar Island"
-Map1 = "Cinnabar mansion 1"
-Map2 = "Cinnabar mansion 2"
+Pokecenter = ""
+City = ""
+Map1 = ""
+Map2 = ""
 Map3 = ""
 Map4 = ""
 Map5 = ""
-LevelLocation = "Cinnabar mansion 3"
+LevelLocation = ""
 
--- Please choose the method of moving on your Level Location : Grass, Water or Rectangle.
--- Avaiable options: "Grass" , "Rectangle" , "Water"
-LevelSpot = "Rectangle"
+-- Please choose the method of moving on your Level Location : "Grass", "Water" or "Rectangle".
+LevelSpot = ""
 
 -- Modify below only if you're using Rectangle as movement method.
 minX = 3
