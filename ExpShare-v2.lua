@@ -357,7 +357,7 @@ end
 
 function onBattleAction()
 	-- Shiny support
-	if isWildBattle() and isOpponentShiny() then
+	if isOpponentShiny() then
 		if getUsablePokemonCount() == 2 and getPokemonHealthPercent(2) >= 15 then
 			if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 2) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) >= SwapCap then
 				if useItem("Ultra Ball") or useItem("Great Ball") or useItem("Pokeball") or attack() or run() or sendUsablePokemon() then

@@ -13,6 +13,7 @@ version 2
 - SCode - For helping me with all the testing / bugfixing and debugging
 - WiWi - For his mental support on every new Project :D
 - Rympe & g0ld - For new ideas i took a look on Questing.lua
+- Taos aka Someone - For improving the hints and text on the Config to make things more clear
 
 ## Known Bugs:
 - [ ] Repeating heal at Pokecenters - Make sure you got no "Zero damage Moves" on any Pokemon

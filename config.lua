@@ -4,29 +4,30 @@
 -- #              Copyright © 2016 imMigno                  #
 -- ##########################################################
 
--- Stop leveling on specific a specific level
-StopLevel = 100 										-- The Bot will shutdown of your Team is above or equal to that level
 
--- Level specific configurations
+-- The Bot will stop when your whole team achieve that level.
+StopLevel = 100
+
+-- Once the pokemon hit that level, it will stop switching and fighting by himself.
 SwapCap = 70
 
 -- Map specific configurations
 -- Please insert the Mapnames of your Leveling routine
-Pokecenter = "Seafoam B4F"
-City = ""
-Map1 = ""
-Map2 = ""
+Pokecenter = "Pokecenter Cinnabar"
+City = "Cinnabar Island"
+Map1 = "Cinnabar mansion 1"
+Map2 = "Cinnabar mansion 2"
 Map3 = ""
 Map4 = ""
 Map5 = ""
-LevelLocation = "Seafoam B4F"
+LevelLocation = "Cinnabar mansion 3"
 
--- Please specify where to level
+-- Please choose the method of moving on your Level Location : Grass, Water or Rectangle.
 -- Avaiable options: "Grass" , "Rectangle" , "Water"
 LevelSpot = "Rectangle"
 
--- Leave this blank or unchanged if you are using LevelSpot = "Grass" or "Water"
-minX = 56
-minY = 14
-maxX = 59
+-- Modify below only if you're using Rectangle as movement method.
+minX = 3
+minY = 15
+maxX = 7
 maxY = 18
