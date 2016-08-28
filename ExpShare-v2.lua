@@ -11,7 +11,7 @@ function onStart()
 	log(" ")
 	log("=========== WELCOME | START ============")
 	log("Welcome to the Universal ExpSharing by imMigno")
-	log("Version 2.0.5 | Updated: 08-28-2016 | 10.50 PM")
+	log("Version 2.0.6 | Updated: 08-29-2016 | 01.00 AM")
 	log("====================================")
 	log(" ")
 
@@ -251,6 +251,9 @@ function getHealed()
 end
 
 function onPathAction()
+
+	trapped = false
+
 	if getTeamSize() == 2 then
 		if isPokemonUsable(1) and isPokemonUsable(2) and getPokemonHealthPercent(2) >= 15 then
 			if isTeamRangeSortedByLevelAscending(1, 2) then
