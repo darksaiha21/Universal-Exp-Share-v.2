@@ -34,3 +34,4 @@ Latest Version: 2.0.5
 | 08-27-2016    | 2.0.3         | Added Route 3 Support                                       |
 | 08-28-2016    | 2.0.4         | Fixed Seafoam Support, Added Anti-Trap & Shiny Support      |
 | 08-28-2016    | 2.0.5         | Fixed the random "no Action executed" Bug                   |
+| 08-29-2016    | 2.0.6         | Fixed an issue at the Anti-Trap Function                    |
