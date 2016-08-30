@@ -1,6 +1,6 @@
 ## [ ProShine ] Universal ExpShare
-Latest update: 08-28-2016 | 10.50 PM
-Latest Version: 2.0.5
+Latest update: 08-30-2016 | 03.05 AM
+Latest Version: 2.0.7
 
 ## New / Changed features
 - [x] Complete rewrite
