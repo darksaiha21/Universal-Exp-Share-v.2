@@ -5,13 +5,15 @@ description = [[
 This script will automaticly level the weakest Pokemon on your Team with your strongest
 and checks if booth of them are usable ! ]]
 
-dofile "config.lua"
-
 function onStart()
+	
+	-- Load Configurations
+	dofile "config.lua"
+
 	log(" ")
 	log("=========== WELCOME | START ============")
 	log("Welcome to the Universal ExpSharing by imMigno")
-	log("Version 2.0.6 | Updated: 08-29-2016 | 01.00 AM")
+	log("Version 2.0.7 | Updated: 08-30-2016 | 03.05 AM")
 	log("====================================")
 	log(" ")
 
@@ -49,82 +51,278 @@ end
 -- Shortcut -> GoToPokecenter
 function healPokemon()
 	if path == 0 and City == "" and Pokecenter == LevelLocation then
-		getHealed()
+		if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+			log("ExpShare | Using ".. Mount)
+			useItem(Mount)
+		elseif isMounted() then
+			getHealed()
+		else
+			getHealed()
+		end
 	elseif path == 0 then
 		if getMapName() == LevelLocation then
-			moveToMap(City)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(City)
+			else
+				moveToMap(City)
+			end
 		elseif getMapName() == City then
-			moveToMap(Pokecenter)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Pokecenter)
+			else
+				moveToMap(Pokecenter)
+			end
 		elseif getMapName() == Pokecenter then
 			getHealed()
 		end
 	elseif path == 1 then
 		if getMapName() == LevelLocation then
-			moveToMap(Map1)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map1)
+			else
+				moveToMap(Map1)
+			end
 		elseif getMapName() == Map1 then
-			moveToMap(City)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(City)
+			else
+				moveToMap(City)
+			end
 		elseif getMapName() == City then
-			moveToMap(Pokecenter)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Pokecenter)
+			else
+				moveToMap(Pokecenter)
+			end
 		elseif getMapName() == Pokecenter then
 			getHealed()
 		end
 	elseif path == 2 then
 		if getMapName() == LevelLocation then
-			moveToMap(Map2)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map2)
+			else
+				moveToMap(Map2)
+			end
 		elseif getMapName() == Map2 then
-			moveToMap(Map1)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map1)
+			else
+				moveToMap(Map1)
+			end
 		elseif getMapName() == Map1 then
-			moveToMap(City)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(City)
+			else
+				moveToMap(City)
+			end
 		elseif getMapName() == City then
-			moveToMap(Pokecenter)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Pokecenter)
+			else
+				moveToMap(Pokecenter)
+			end
 		elseif getMapName() == Pokecenter then
 			getHealed()
 		end
 	elseif path == 3 then
 		if getMapName() == LevelLocation then
-			moveToMap(Map3)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map3)
+			else
+				moveToMap(Map3)
+			end
 		elseif getMapName() == Map3 then
-			moveToMap(Map2)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map2)
+			else
+				moveToMap(Map2)
+			end
 		elseif getMapName() == Map2 then
-			moveToMap(Map1)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map1)
+			else
+				moveToMap(Map1)
+			end
 		elseif getMapName() == Map1 then
-			moveToMap(City)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(City)
+			else
+				moveToMap(City)
+			end
 		elseif getMapName() == City then
-			moveToMap(Pokecenter)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Pokecenter)
+			else
+				moveToMap(Pokecenter)
+			end
 		elseif getMapName() == Pokecenter then
 			getHealed()
 		end
 	elseif path == 4 then
 		if getMapName() == LevelLocation then
-			moveToMap(Map4)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map4)
+			else
+				moveToMap(Map4)
+			end
 		elseif getMapName() == Map4 then
-			moveToMap(Map3)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map3)
+			else
+				moveToMap(Map3)
+			end
 		elseif getMapName() == Map3 then
-			moveToMap(Map2)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map2)
+			else
+				moveToMap(Map2)
+			end
 		elseif getMapName() == Map2 then
-			moveToMap(Map1)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map1)
+			else
+				moveToMap(Map1)
+			end
 		elseif getMapName() == Map1 then
-			moveToMap(City)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(City)
+			else
+				moveToMap(City)
+			end
 		elseif getMapName() == City then
-			moveToMap(Pokecenter)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Pokecenter)
+			else
+				moveToMap(Pokecenter)
+			end
 		elseif getMapName() == Pokecenter then
 			getHealed()
 		end
 	elseif path == 5 then
 		if getMapName() == LevelLocation then
-			moveToMap(Map5)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map5)
+			else
+				moveToMap(Map5)
+			end
 		elseif getMapName() == Map5 then
-			moveToMap(Map4)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map4)
+			else
+				moveToMap(Map4)
+			end
 		elseif getMapName() == Map4 then
-			moveToMap(Map3)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map3)
+			else
+				moveToMap(Map3)
+			end
 		elseif getMapName() == Map3 then
-			moveToMap(Map2)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map2)
+			else
+				moveToMap(Map2)
+			end
 		elseif getMapName() == Map2 then
-			moveToMap(Map1)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map1)
+			else
+				moveToMap(Map1)
+			end
 		elseif getMapName() == Map1 then
-			moveToMap(City)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(City)
+			else
+				moveToMap(City)
+			end
 		elseif getMapName() == City then
-			moveToMap(Pokecenter)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Pokecenter)
+			else
+				moveToMap(Pokecenter)
+			end
 		elseif getMapName() == Pokecenter then
 			getHealed()
 		end
@@ -137,7 +335,14 @@ function moveToDestination()
 	-- No City & LevelLocation == Pokecenter
 	if path == 0 and City == "" and Pokecenter == LevelLocation then
 		if getMapName() == LevelLocation then
-			getLevelSpot()
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				getLevelSpot()
+			else
+				getLevelSpot()
+			end
 		else
 			getHealed()
 		end
@@ -154,84 +359,266 @@ function moveToDestination()
 		if getMapName() == Pokecenter then
 			moveToMap(City)
 		elseif getMapName() == City then
-			moveToMap(LevelLocation)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(LevelLocation)
+			else
+				moveToMap(LevelLocation)
+			end
 		elseif getMapName() == LevelLocation then
-			getLevelSpot()
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				getLevelSpot()
+			else
+				getLevelSpot()
+			end
 		end
 	-- Path of 1 Maps between City and LevelSpot	
 	elseif path == 1 then
 		if getMapName() == Pokecenter then
 			moveToMap(City)
 		elseif getMapName() == City then
-			moveToMap(Map1)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map1)
+			else
+				moveToMap(Map1)
+			end
 		elseif getMapName() == Map1 then
-			moveToMap(LevelLocation)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(LevelLocation)
+			else
+				moveToMap(LevelLocation)
+			end
 		elseif getMapName() == LevelLocation then
-			getLevelSpot()
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				getLevelSpot()
+			else
+				getLevelSpot()
+			end
 		end
 	-- Path of 2 Maps between City and LevelSpot	
 	elseif path == 2 then
 		if getMapName() == Pokecenter then
 			moveToMap(City)
 		elseif getMapName() == City then
-			moveToMap(Map1)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map1)
+			else
+				moveToMap(Map1)
+			end
 		elseif getMapName() == Map1 then
-			moveToMap(Map2)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map2)
+			else
+				moveToMap(Map2)
+			end
 		elseif getMapName() == Map2 then
-			moveToMap(LevelLocation)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(LevelLocation)
+			else
+				moveToMap(LevelLocation)
+			end
 		elseif getMapName() == LevelLocation then
-			getLevelSpot()
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				getLevelSpot()
+			else
+				getLevelSpot()
+			end
 		end
 	-- Path of 3 Maps between City and LevelSpot	
 	elseif path == 3 then
 		if getMapName() == Pokecenter then
 			moveToMap(City)
 		elseif getMapName() == City then
-			moveToMap(Map1)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map1)
+			else
+				moveToMap(Map1)
+			end
 		elseif getMapName() == Map1 then
-			moveToMap(Map2)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map2)
+			else
+				moveToMap(Map2)
+			end
 		elseif getMapName() == Map2 then
-			moveToMap(Map3)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map3)
+			else
+				moveToMap(Map3)
+			end
 		elseif getMapName() == Map3 then
-			moveToMap(LevelLocation)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(LevelLocation)
+			else
+				moveToMap(LevelLocation)
+			end
 		elseif getMapName() == LevelLocation then
-			getLevelSpot()
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				getLevelSpot()
+			else
+				getLevelSpot()
+			end
 		end
 	-- Path of 4 Maps between City and LevelSpot	
 	elseif path == 4 then
 		if getMapName() == Pokecenter then
 			moveToMap(City)
 		elseif getMapName() == City then
-			moveToMap(Map1)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map1)
+			else
+				moveToMap(Map1)
+			end
 		elseif getMapName() == Map1 then
-			moveToMap(Map2)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map2)
+			else
+				moveToMap(Map2)
+			end
 		elseif getMapName() == Map2 then
-			moveToMap(Map3)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map3)
+			else
+				moveToMap(Map3)
+			end
 		elseif getMapName() == Map3 then
-			moveToMap(Map4)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map4)
+			else
+				moveToMap(Map4)
+			end
 		elseif getMapName() == Map4 then
-			moveToMap(LevelLocation)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(LevelLocation)
+			else
+				moveToMap(LevelLocation)
+			end
 		elseif getMapName() == LevelLocation then
-			getLevelSpot()
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				getLevelSpot()
+			else
+				getLevelSpot()
+			end
 		end
 	-- Path of 5 Maps between City and LevelSpot	
 	elseif path == 5 then
 		if getMapName() == Pokecenter then
 			moveToMap(City)
 		elseif getMapName() == City then
-			moveToMap(Map1)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map1)
+			else
+				moveToMap(Map1)
+			end
 		elseif getMapName() == Map1 then
-			moveToMap(Map2)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map2)
+			else
+				moveToMap(Map2)
+			end
 		elseif getMapName() == Map2 then
-			moveToMap(Map3)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map3)
+			else
+				moveToMap(Map3)
+			end
 		elseif getMapName() == Map3 then
-			moveToMap(Map4)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map4)
+			else
+				moveToMap(Map4)
+			end
 		elseif getMapName() == Map4 then
-			moveToMap(Map5)
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				moveToMap(Map5)
+			else
+				moveToMap(Map5)
+			end
 		elseif getMapName() == Map5 then
 			moveToMap(LevelLocation)
 		elseif getMapName() == LevelLocation then
-			getLevelSpot()
+			if hasItem(Mount) and not isMounted() and isOutside() and not isSurfing() then
+				log("ExpShare | Using ".. Mount)
+				useItem(Mount)
+			elseif isMounted() then
+				getLevelSpot()
+			else
+				getLevelSpot()
+			end
 		end
 	end
 end
@@ -537,7 +924,7 @@ function onBattleAction()
 
 		-- 6 Pokemon usable
 		elseif getUsablePokemonCount() == 6 and getPokemonHealthPercent(6) >= 15 then
-			if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) >= SwapCap then
+			if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(6) >= 15 and getPokemonLevel(1) >= SwapCap then
 				if trapped == true then
 					return attack() or sendUsablePokemon()
 				else

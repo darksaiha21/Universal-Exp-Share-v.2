@@ -13,6 +13,9 @@ SwapCap = 70
 
 -- Map specific configurations
 -- Please insert the Mapnames of your Leveling routine
+
+Mount = "Bicycle"
+
 Pokecenter = ""
 City = ""
 Map1 = ""

@@ -35,3 +35,4 @@ Latest Version: 2.0.5
 | 08-28-2016    | 2.0.4         | Fixed Seafoam Support, Added Anti-Trap & Shiny Support      |
 | 08-28-2016    | 2.0.5         | Fixed the random "no Action executed" Bug                   |
 | 08-29-2016    | 2.0.6         | Fixed an issue at the Anti-Trap Function                    |
+| 08-30-2016    | 2.0.7         | Added Universal Mount support & Change config while the script is running, without reloaded the whole script ( Just press Stop and then Start again )                               |
