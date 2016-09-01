@@ -4,6 +4,8 @@
 -- #              Copyright © 2016 imMigno                  #
 -- ##########################################################
 
+-- The Bot will heal your Pokemon when the Count of usable Pokemon get to this number
+keepAlive = 5
 
 -- The Bot will stop when your whole team achieve that level.
 StopLevel = 100

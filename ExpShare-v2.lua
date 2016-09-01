@@ -13,7 +13,7 @@ function onStart()
 	log(" ")
 	log("=========== WELCOME | START ============")
 	log("Welcome to the Universal ExpSharing by imMigno")
-	log("Version 2.0.7 | Updated: 08-30-2016 | 03.05 AM")
+	log("Version 2.0.8 | Updated: 08-31-2016 | 03.39 AM")
 	log("====================================")
 	log(" ")
 
@@ -638,331 +638,83 @@ function getHealed()
 end
 
 function onPathAction()
-
-	trapped = false
-
-	if getTeamSize() == 2 then
-		if isPokemonUsable(1) and isPokemonUsable(2) and getPokemonHealthPercent(2) >= 15 then
-			if isTeamRangeSortedByLevelAscending(1, 2) then
-				if getPokemonLevel(1) >= StopLevel and getPokemonLevel(2) >= StopLevel then
-					log(" ")
-					log("============ FINISHED LEVELING ============")
-					log("The StopLevel has been reached, Bot stopped")
-					log("===========================================")
-					fatal(" ")
-				else
-					moveToDestination()
-				end
+	if  advanceSorting() then 
+		return true
+	elseif getTeamSize() >= 2 then
+        if getUsablePokemonCount() > keepAlive then
+            if isPokemonUsable(1) then
+                    if getPokemonLevel(1) >= StopLevel then
+                        log(" ")
+                        log("============ FINISHED LEVELING ============")
+                        log("The StopLevel has been reached, Bot stopped")
+                        log("===========================================")
+                        fatal(" ")
+                    else 
+					   moveToDestination()
+						
+                    end
 			else
-				return sortTeamRangeByLevelAscending(1, 2)
-			end
-		else
-			healPokemon()
-		end
-
-	elseif getTeamSize() == 3 then
-		if isPokemonUsable(1) and isPokemonUsable(2) and isPokemonUsable(3) and getPokemonHealthPercent(3) >= 15 then
-			if isTeamRangeSortedByLevelAscending(1, 3) then
-				if getPokemonLevel(1) >= StopLevel and getPokemonLevel(2) >= StopLevel and getPokemonLevel(3) >= StopLevel then
-					log(" ")
-					log("============ FINISHED LEVELING ============")
-					log("The StopLevel has been reached, Bot stopped")
-					log("===========================================")
-					fatal(" ")
-				else
-					moveToDestination()
-				end
-			else
-				return sortTeamRangeByLevelAscending(1, 3)
-			end
-		else
-			healPokemon()
-		end
-
-	elseif getTeamSize() == 4 then
-		if isPokemonUsable(1) and isPokemonUsable(2) and isPokemonUsable(3) and isPokemonUsable(4) and getPokemonHealthPercent(4) >= 15 then
-			if isTeamRangeSortedByLevelAscending(1, 4) then
-				if getPokemonLevel(1) >= StopLevel and getPokemonLevel(2) >= StopLevel and getPokemonLevel(3) >= StopLevel and getPokemonLevel(4) >= StopLevel then
-					log(" ")
-					log("============ FINISHED LEVELING ============")
-					log("The StopLevel has been reached, Bot stopped")
-					log("===========================================")
-					fatal(" ")
-				else
-					moveToDestination()
-				end
-			else
-				return sortTeamRangeByLevelAscending(1, 4)
-			end
-		else
-			healPokemon()
-		end
-
-	elseif getTeamSize() == 5 then
-		if isPokemonUsable(1) and isPokemonUsable(2) and isPokemonUsable(3) and isPokemonUsable(4) and isPokemonUsable(5) and getPokemonHealthPercent(5) >= 15 then
-		 	if isTeamRangeSortedByLevelAscending(1, 5) then
-		 		if getPokemonLevel(1) >= StopLevel and getPokemonLevel(2) >= StopLevel and getPokemonLevel(3) >= StopLevel and getPokemonLevel(4) >= StopLevel and getPokemonLevel(5) >= StopLevel then
-					log(" ")
-					log("============ FINISHED LEVELING ============")
-					log("The StopLevel has been reached, Bot stopped")
-					log("===========================================")
-					fatal(" ")
-				else
-					moveToDestination()
-				end
-		 	else
-		 		return sortTeamRangeByLevelAscending(1, 5)
-		 	end
-		 else
-			healPokemon()
-		end
-
-	elseif getTeamSize() == 6 then
-		if isPokemonUsable(1) and isPokemonUsable(2) and isPokemonUsable(3) and isPokemonUsable(4) and isPokemonUsable(5) and isPokemonUsable(6) and getPokemonHealthPercent(6) >= 15 then
-			if isTeamRangeSortedByLevelAscending(1, 6) then
-				if getPokemonLevel(1) >= StopLevel and getPokemonLevel(2) >= StopLevel and getPokemonLevel(3) >= StopLevel and getPokemonLevel(4) >= StopLevel and getPokemonLevel(5) >= StopLevel and getPokemonLevel(6) >= StopLevel then
-					log(" ")
-					log("============ FINISHED LEVELING ============")
-					log("The StopLevel has been reached, Bot stopped")
-					log("===========================================")
-					fatal(" ")
-				else
-					moveToDestination()
-				end
-			else
-				return sortTeamRangeByLevelAscending(1, 6)
-			end
-		else
-			healPokemon()
-		end
-
-	else
-		log(" ")
-		log("=========== FATAL ERROR LOG ===========")
-		log("You need atleast 2 Pokemon in your Team")
-		log("        - ExpSharing destoyed -        ")
-		log("=======================================")
-		fatal(" ")
-	end
+				log(" ")
+				log("===== ERROR LOG =====")
+				log(" Error on pathing    ")
+				log(" ErrorCode: Path001  ")
+				log("=====================")
+				fatal(" ")
+            end
+        else
+            healPokemon()
+        end    
+    else
+        log(" ")
+        log("=========== FATAL ERROR LOG ===========")
+        log("You need atleast 2 Pokemon in your Team")
+        log("        - ExpSharing destoyed -        ")
+        log("=======================================")
+        fatal(" ")
+    end
 end
 
 function onBattleAction()
-	-- Shiny support
-	if isWildBattle() and isOpponentShiny() then
-		if getUsablePokemonCount() == 2 and getPokemonHealthPercent(2) >= 15 then
-			if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 2) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) >= SwapCap then
-				if useItem("Ultra Ball") or useItem("Great Ball") or useItem("Pokeball") or attack() or run() or sendUsablePokemon() then
-					return
-				end
-			elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 2) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) < SwapCap then
-				sendPokemon(2)
-			elseif getActivePokemonNumber() == 2 and isTeamRangeSortedByLevelAscending(1, 2) and getPokemonHealthPercent(2) >= 15 then
-				if useItem("Ultra Ball") or useItem("Great Ball") or useItem("Pokeball") or attack() or run() or sendUsablePokemon() then
-					return
-				end
-			end
 
-		elseif getUsablePokemonCount() == 3 and getPokemonHealthPercent(3) >= 15 then
-			if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 3) and getPokemonHealthPercent(3) >= 15 and getPokemonLevel(1) >= SwapCap then
-				if useItem("Ultra Ball") or useItem("Great Ball") or useItem("Pokeball") or attack() or run() or sendUsablePokemon() then
-					return
-				end
-			elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 3) and getPokemonHealthPercent(3) >= 15 and getPokemonLevel(1) < SwapCap then
-				sendPokemon(3)
-			elseif getActivePokemonNumber() == 3 and isTeamRangeSortedByLevelAscending(1, 3) and getPokemonHealthPercent(3) >= 15 then
-				if useItem("Ultra Ball") or useItem("Great Ball") or useItem("Pokeball") or attack() or run() or sendUsablePokemon() then
-					return
-				end
-			end
-		elseif getUsablePokemonCount() == 4 and getPokemonHealthPercent(4) >= 15 then
-			if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 4) and getPokemonHealthPercent(4) >= 15 and getPokemonLevel(1) >= SwapCap then
-				if useItem("Ultra Ball") or useItem("Great Ball") or useItem("Pokeball") or attack() or run() or sendUsablePokemon() then
-					return
-				end
-			elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 4) and getPokemonHealthPercent(4) >= 15 and getPokemonLevel(1) < SwapCap then
-				sendPokemon(2)
-			elseif getActivePokemonNumber() == 4 and isTeamRangeSortedByLevelAscending(1, 4) and getPokemonHealthPercent(4) >= 15 then
-				if useItem("Ultra Ball") or useItem("Great Ball") or useItem("Pokeball") or attack() or run() or sendUsablePokemon() then
-					return
-				end
-			end
-		elseif getUsablePokemonCount() == 5 and getPokemonHealthPercent(5) >= 15 then
-			if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 5) and getPokemonHealthPercent(5) >= 15 and getPokemonLevel(1) >= SwapCap then
-				if useItem("Ultra Ball") or useItem("Great Ball") or useItem("Pokeball") or attack() or run() or sendUsablePokemon() then
-					return
-				end
-			elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 5) and getPokemonHealthPercent(5) >= 15 and getPokemonLevel(1) < SwapCap then
-				sendPokemon(2)
-			elseif getActivePokemonNumber() == 5 and isTeamRangeSortedByLevelAscending(1, 5) and getPokemonHealthPercent(5) >= 15 then
-				if useItem("Ultra Ball") or useItem("Great Ball") or useItem("Pokeball") or attack() or run() or sendUsablePokemon() then
-					return
-				end
-			end
-		elseif getUsablePokemonCount() == 6 and getPokemonHealthPercent(6) >= 15 then
-			if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(6) >= 15 and getPokemonLevel(1) >= SwapCap then
-				if useItem("Ultra Ball") or useItem("Great Ball") or useItem("Pokeball") or attack() or run() or sendUsablePokemon() then
-					return
-				end
-			elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(6) >= 15 and getPokemonLevel(1) < SwapCap then
-				sendPokemon(6)
-			elseif getActivePokemonNumber() == 6 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(6) >= 15 then
-				if useItem("Ultra Ball") or useItem("Great Ball") or useItem("Pokeball") or attack() or run() or sendUsablePokemon() then
-					return
-				end
-			end
-		end
-	
-	elseif isWildBattle() and not isOpponentShiny() then
-		-- Battle Action
-		-- 2 Pokemon Usable
-		if getUsablePokemonCount() == 2 and getPokemonHealthPercent(2) >= 15 then
-			if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 2) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) >= SwapCap then
-				if trapped == true then
-					return attack() or sendUsablePokemon()
-				else
-					return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
-				end
-			elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 2) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) < SwapCap then
-				if trapped == true then
-					return attack or sendUsablePokemon()
-				else
-					sendPokemon(2)
-					log(" ")
-					log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(2))
-					log(" ")
-				end
-			elseif getActivePokemonNumber() == 2 and isTeamRangeSortedByLevelAscending(1, 2) and getPokemonHealthPercent(2) >= 15 then
-				return attack() or run() or sendUsablePokemon() or sendAnyPokemon()
-			else
-				if trapped == true then
-					return attack() or sendUsablePokemon()
-				else
-					return run() or sendUsablePokemon() or sendAnyPokemon() or attack()
-				end
-			end
-			
-		-- 3 Pokemon Usable
-		elseif getUsablePokemonCount() == 3 and getPokemonHealthPercent(3) >= 15 then
-			if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 3) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) >= SwapCap then
-				if trapped == true then
-					return attack() or sendUsablePokemon()
-				else
-					return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
-				end
-			elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 3) and getPokemonHealthPercent(3) >= 15 and getPokemonLevel(1) < SwapCap then
-				if trapped == true then
-					return attack or sendUsablePokemon()
-				else
-					sendPokemon(3)
-					log(" ")
-					log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(3))
-					log(" ")
-				end
-			elseif getActivePokemonNumber() == 3 and isTeamRangeSortedByLevelAscending(1, 3) and getPokemonHealthPercent(3) >= 15 then
-				return attack() or run() or sendUsablePokemon() or sendAnyPokemon()
-			else
-				if trapped == true then
-					return attack() or sendUsablePokemon()
-				else
-					return run() or sendUsablePokemon() or sendAnyPokemon() or attack()
-				end
-			end
+	if getMapName() == LevelLocation then
+		if getActivePokemonNumber() == 1 and getUsablePokemonCount() > keepAlive and getPokemonLevel(1) >= SwapCap then
+			return attack() or sendUsablePokemon() or SendAnyPokemon() or run()
 
-		-- 4 Pokemon Usable
-		elseif getUsablePokemonCount() == 4 and getPokemonHealthPercent(4) >= 15 then
-			if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 4) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) >= SwapCap then
-				if trapped == true then
-					return attack() or sendUsablePokemon()
-				else
-					return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
-				end
-			elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 4) and getPokemonHealthPercent(4) >= 15 and getPokemonLevel(1) < SwapCap then
-				if trapped == true then
-					return attack or sendUsablePokemon()
-				else
-					sendPokemon(4)
-					log(" ")
-					log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(4))
-					log(" ")
-				end
-			elseif getActivePokemonNumber() == 4 and isTeamRangeSortedByLevelAscending(1, 4) and getPokemonHealthPercent(4) >= 15 then
-				return attack() or run() or sendUsablePokemon() or sendAnyPokemon()
-			else
-				if trapped == true then
-					return attack() or sendUsablePokemon()
-				else
-					return run() or sendUsablePokemon() or sendAnyPokemon() or attack()
-				end
-			end
-
-		-- 5 Pokemon Usable
-		elseif getUsablePokemonCount() == 5 and getPokemonHealthPercent(5) >= 15 then
-			if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 5) and getPokemonHealthPercent(2) >= 15 and getPokemonLevel(1) >= SwapCap then
-				if trapped == true then
-					return attack() or sendUsablePokemon()
-				else
-					return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
-				end
-			elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 5) and getPokemonHealthPercent(5) >= 15 and getPokemonLevel(1) < SwapCap then
-				if trapped == true then
-					return attack or sendUsablePokemon()
-				else
-					sendPokemon(5)
-					log(" ")
-					log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(5))
-					log(" ")
-				end
-			elseif getActivePokemonNumber() == 5 and isTeamRangeSortedByLevelAscending(1, 5) and getPokemonHealthPercent(5) >= 15 then
-				return attack() or run() or sendUsablePokemon() or sendAnyPokemon()
-			else
-				if trapped == true then
-					return attack() or sendUsablePokemon()
-				else
-					return run() or sendUsablePokemon() or sendAnyPokemon() or attack()
-				end
-			end
-
-		-- 6 Pokemon usable
-		elseif getUsablePokemonCount() == 6 and getPokemonHealthPercent(6) >= 15 then
-			if getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(6) >= 15 and getPokemonLevel(1) >= SwapCap then
-				if trapped == true then
-					return attack() or sendUsablePokemon()
-				else
-					return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
-				end
-			elseif getActivePokemonNumber() == 1 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(6) >= 15 and getPokemonLevel(1) < SwapCap then
-				if trapped == true then
-					return attack or sendUsablePokemon()
-				else
-					sendPokemon(6)
-					log(" ")
-					log("Your ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(6))
-					log(" ")
-				end
-			elseif getActivePokemonNumber() == 6 and isTeamRangeSortedByLevelAscending(1, 6) and getPokemonHealthPercent(6) >= 15 then
-				return attack() or run() or sendUsablePokemon() or sendAnyPokemon()
-			else
-				if trapped == true then
-					return attack() or sendUsablePokemon()
-				else
-					return run() or sendUsablePokemon() or sendAnyPokemon() or attack()
-				end
-			end
-		else
+		elseif getActivePokemonNumber() == 1 and getUsablePokemonCount() > keepAlive and getPokemonLevel(1) < SwapCap then
 			if trapped == true then
-				return attack() or sendUsablePokemon()
+				return attack() or sendUsablePokemon() or sendAnyPokemon()
 			else
-				return run() or sendUsablePokemon() or sendAnyPokemon() or attack()
+				sendPokemon(getUsablePokemonCount())
+				log("ExpShare | ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(getUsablePokemonCount()))
 			end
+
+		elseif getActivePokemonNumber() == getUsablePokemonCount() and getUsablePokemonCount() > keepAlive then
+			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
+
+		elseif getActivePokemonNumber() ~= getUsablePokemonCount() then
+				if getPokemonLevel(getActivePokemonNumber()) >= SwapCap then
+					return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
+				else
+					sendPokemon(getUsablePokemonCount())
+					log("ExpShare | ".. getPokemonName(getActivePokemonNumber()) .. " has been switched with ".. getPokemonName(getUsablePokemonCount()))
+				end
+
+		elseif getUsablePokemonCount() <= keepAlive then
+			return run() or sendUsablePokemon() or sendAnyPokemon() or attack() 
+		
+		else
+			log(" ")
+			log("============ ERROR ============")
+			log("Please report this on the Forum")
+			log("     Error Code: Battle01      ")
+			log("===============================")
+			fatal(" ")
 		end
+	else
+		return run() or attack() or sendUsablePokemon() or sendAnyPokemon()
 	end
 end
 
-function onBattleMessage(wild)
-	if stringContains(wild, "wrapped") or stringContains(wild, "You can not switch this Pokemon") or stringContains(wild, "You failed to run away") or stringContains(wild, "You can not run away") then
-		trapped = true
-	end		
-end
 
 function onLearningMove(moveName, pokemonIndex)
     local ForgetMoveName
@@ -985,4 +737,29 @@ function onLearningMove(moveName, pokemonIndex)
     log(" ")
     log("===========================")
     return ForgetMoveName
+end
+
+function onBattleMessage(wild)
+	if stringContains(wild, "wrapped") or stringContains(wild, "You can not switch this Pokemon") or stringContains(wild, "You failed to run away") or stringContains(wild, "You can not run away") then
+		trapped = true
+	end		
+end
+
+function advanceSorting()
+	local pokemonsUsable = getUsablePokemonCount()
+	for pokemonId=1, pokemonsUsable, 1 do
+		if not isPokemonUsable(pokemonId) then --Move it at bottom of the Team
+			for pokemonId_ = pokemonsUsable + 1, getTeamSize(), 1 do
+				if isPokemonUsable(pokemonId_) then
+					swapPokemon(pokemonId, pokemonId_)
+					return true
+				end
+			end
+			
+		end
+	end
+	if not isTeamRangeSortedByLevelAscending(1, pokemonsUsable) then --Sort the team without not usable pokemons
+		return sortTeamRangeByLevelAscending(1, pokemonsUsable)
+	end
+	return false
 end
