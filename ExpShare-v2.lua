@@ -676,6 +676,12 @@ end
 
 function onBattleAction()
 
+	if isWildBattle() and isOpponentShiny() then
+		if useItem("Ultra Ball") or useItem("Great Ball") or useItem("Pokeball") then
+			return
+		end
+	end
+
 	if getMapName() == LevelLocation then
 		if getActivePokemonNumber() == 1 and getUsablePokemonCount() > keepAlive and getPokemonLevel(1) >= SwapCap then
 			return attack() or sendUsablePokemon() or SendAnyPokemon() or run()
