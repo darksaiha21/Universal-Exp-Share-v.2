@@ -638,6 +638,9 @@ function getHealed()
 end
 
 function onPathAction()
+
+	trapped = false
+
 	if  advanceSorting() then 
 		return true
 	elseif getTeamSize() >= 2 then
