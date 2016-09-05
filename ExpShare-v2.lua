@@ -687,11 +687,15 @@ function onBattleAction()
 
 	if getMapName() == LevelLocation then
 		if getActivePokemonNumber() == 1 and getUsablePokemonCount() > keepAlive and getPokemonLevel(1) >= SwapCap then
-			return attack() or sendUsablePokemon() or SendAnyPokemon() or run()
+			if trapped == true then
+				return attack() or sendUsablePokemon() or SendAnyPokemon() or run()
+			else
+				return attack()
+			end
 
 		elseif getActivePokemonNumber() == 1 and getUsablePokemonCount() > keepAlive and getPokemonLevel(1) < SwapCap then
 			if trapped == true then
-				return attack() or sendUsablePokemon() or sendAnyPokemon()
+				return attack()
 			else
 				sendPokemon(getUsablePokemonCount())
 				log("ExpShare | ".. getPokemonName(1) .. " has been switched with ".. getPokemonName(getUsablePokemonCount()))
@@ -704,13 +708,21 @@ function onBattleAction()
 				if getPokemonLevel(getActivePokemonNumber()) >= SwapCap then
 					return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
 				else
-					sendPokemon(getUsablePokemonCount())
-					log("ExpShare | ".. getPokemonName(getActivePokemonNumber()) .. " has been switched with ".. getPokemonName(getUsablePokemonCount()))
+					if trapped == true then
+						return attack()
+					else
+						sendPokemon(getUsablePokemonCount())
+						log("ExpShare | ".. getPokemonName(getActivePokemonNumber()) .. " has been switched with ".. getPokemonName(getUsablePokemonCount()))
+					end
 				end
 
 		elseif getUsablePokemonCount() <= keepAlive then
-			return run() or sendUsablePokemon() or sendAnyPokemon() or attack() 
-		
+			if trapped == true then
+				return attack()
+			else
+				return run() or sendUsablePokemon() or sendAnyPokemon() or attack() 
+			end
+
 		else
 			log(" ")
 			log("============ ERROR ============")
@@ -720,7 +732,11 @@ function onBattleAction()
 			fatal(" ")
 		end
 	else
-		return run() or attack() or sendUsablePokemon() or sendAnyPokemon()
+		if trapped == true then
+			return attack()
+		else
+			return run() or attack() or sendUsablePokemon() or sendAnyPokemon()
+		end
 	end
 end
 
