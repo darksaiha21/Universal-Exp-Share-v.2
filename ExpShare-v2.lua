@@ -13,12 +13,12 @@ function onStart()
 	log(" ")
 	log("=========== WELCOME | START ============")
 	log("Welcome to the Universal ExpSharing by imMigno")
-	log("Version 2.0.8 | Updated: 08-31-2016 | 03.39 AM")
+	log("Version 2.0.8b | Updated: 08-31-2016 | 03.39 AM")
 	log("====================================")
 	log(" ")
 
 	path = 0
-	trapped = false
+	trapped = "false"
 
 	if Map1 ~= "" then
 		path = path + 1
@@ -46,6 +46,15 @@ function getLevelSpot()
 	elseif LevelSpot == "Rectangle" then
 		moveToRectangle(minX, minY, maxX, maxY)
 	end
+end
+
+function onPause()
+	log("ExpShare | Paused !")
+end
+
+function onResume()
+	dofile "config.lua"
+	log("ExpShare | Config successfully reloaded !")
 end
 
 -- Shortcut -> GoToPokecenter
@@ -639,7 +648,9 @@ end
 
 function onPathAction()
 
-	trapped = false
+	if trapped == "true" then
+		trapped = "false"
+	end
 
 	if  advanceSorting() then 
 		return true
@@ -687,14 +698,14 @@ function onBattleAction()
 
 	if getMapName() == LevelLocation then
 		if getActivePokemonNumber() == 1 and getUsablePokemonCount() > keepAlive and getPokemonLevel(1) >= SwapCap then
-			if trapped == true then
+			if trapped == "true" then
 				return attack() or sendUsablePokemon() or SendAnyPokemon() or run()
 			else
 				return attack()
 			end
 
 		elseif getActivePokemonNumber() == 1 and getUsablePokemonCount() > keepAlive and getPokemonLevel(1) < SwapCap then
-			if trapped == true then
+			if trapped == "true" then
 				return attack()
 			else
 				sendPokemon(getUsablePokemonCount())
@@ -708,7 +719,7 @@ function onBattleAction()
 				if getPokemonLevel(getActivePokemonNumber()) >= SwapCap then
 					return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
 				else
-					if trapped == true then
+					if trapped == "true" then
 						return attack()
 					else
 						sendPokemon(getUsablePokemonCount())
@@ -717,7 +728,7 @@ function onBattleAction()
 				end
 
 		elseif getUsablePokemonCount() <= keepAlive then
-			if trapped == true then
+			if trapped == "true" then
 				return attack()
 			else
 				return run() or sendUsablePokemon() or sendAnyPokemon() or attack() 
@@ -732,7 +743,7 @@ function onBattleAction()
 			fatal(" ")
 		end
 	else
-		if trapped == true then
+		if trapped == "true" then
 			return attack()
 		else
 			return run() or attack() or sendUsablePokemon() or sendAnyPokemon()
@@ -765,8 +776,9 @@ function onLearningMove(moveName, pokemonIndex)
 end
 
 function onBattleMessage(wild)
-	if stringContains(wild, "wrapped") or stringContains(wild, "You can not switch this Pokemon") or stringContains(wild, "You failed to run away") or stringContains(wild, "You can not run away") then
-		trapped = true
+	if stringContains(wild, "wrapped") or stringContains(wild, "You can not switch this Pokemon!") or stringContains(wild, "You failed to run away!") or stringContains(wild, "You can not run away!")  then
+		log("ExpShare | Trapped triggered - Activating Anti-Trap")
+		trapped = "true"
 	end		
 end
 
