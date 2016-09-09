@@ -5,33 +5,30 @@
 -- ##########################################################
 
 -- The Bot will heal your Pokemon when the Count of usable Pokemon get to this number
-keepAlive = 5
+keepAlive = 1
 
 -- The Bot will stop when your whole team achieve that level.
 StopLevel = 100
 
 -- Once the pokemon hit that level, it will stop switching and fighting by himself.
-SwapCap = 70
+SwapCap = 60
 
 -- Map specific configurations
 -- Please insert the Mapnames of your Leveling routine
 
-Mount = "Bicycle"
+Mount = "Latios"
 
-Pokecenter = ""
-City = ""
-Map1 = ""
-Map2 = ""
-Map3 = ""
-Map4 = ""
-Map5 = ""
-LevelLocation = ""
+Path = {
+	"Route 5 Stop House",
+	"Route 5",
+	"Cerulean City",
+}
 
 -- Please choose the method of moving on your Level Location : "Grass", "Water" or "Rectangle".
-LevelSpot = ""
+LevelSpot = "Rectangle"
 
 -- Modify below only if you're using Rectangle as movement method.
-minX = 3
-minY = 15
-maxX = 7
-maxY = 18
+minX = 46
+minY = 14
+maxX = 47
+maxY = 22
