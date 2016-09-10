@@ -19,13 +19,12 @@ SwapCap = 60
 Mount = "Latios"
 
 Path = {
-	"Route 5 Stop House",
-	"Route 5",
-	"Cerulean City",
+	"",
+	"",
 }
 
 -- Please choose the method of moving on your Level Location : "Grass", "Water" or "Rectangle".
-LevelSpot = "Rectangle"
+LevelSpot = ""
 
 -- Modify below only if you're using Rectangle as movement method.
 minX = 46

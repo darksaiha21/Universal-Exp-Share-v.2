@@ -1,60 +1,58 @@
-lastMap = Maps
+function firstMap()
+	if getMapName() == Path[1] then
+		return true
+	else
+		return false
+	end
+end
 
-function moveToDestination()
-	if mapId() ~= lastMap then
-		if not isTeamRangeSortedByLevelDescending(1, getTeamSize()) then
-			sortTeamRangeByLevelDescending(1, getTeamSize())
-		elseif isTeamRangeSortedByLevelDescending(1, getTeamSize()) then
-			log("DDDD")
-			Maps = Maps + 1
-			moveTo(startMap + Maps)
-		else
-			log(" ")
-			log("==== ERROR ====")
-			log("  _Error Code_ ")
-			log(" -> Sort 01 <- ")
-			log("===============")
-			fatal(" ")
+function lastMap()
+	if getMapName() == Path[#Path] then
+		return true
+	else
+		return false
+	end
+end
+
+function getCurrentMap()
+	for i = 1, #Path do
+		if getMapName() == Path[i] then
+			return i
 		end
+	end
+end
 
-	elseif mapId() == lastMap then
+function mTD()
+	if not lastMap() then
+		if not isTeamRangeSortedByLevelDescending(1, getTeamSize()) then
+			sortTeamByLevelDescending(1, getTeamSize())
+		elseif isTeamRangeSortedByLevelDescending(1, getTeamSize()) then
+			moveTo(getCurrentMap() + 1)
+		end
+	elseif lastMap() then
 		if advanceSorting() then
 			return true
 		elseif isPokemonUsable(1) then
 			if getPokemonLevel(1) >= StopLevel then
 				log(" ")
-                log("============ FINISHED LEVELING ============")
-                log("The StopLevel has been reached, Bot stopped")
-                log("===========================================")
+				log("ExpShare | StopLevel reached - ExpShare finished !")
                 fatal(" ")
             else
             	getLevelSpot()
             end
         end
-	end
+    end
 end
 
-function healPokemon()
-	if mapId() ~= startMap then
-		Maps = Maps - 1
-		moveTo(lastMap - Maps)
+function hP()
+	if not startMap() then
+		moveTo(getCurrentMap() - 1)
+	elseif startMap() then
+		getHealed()
 	else
-		healPokemon()
-	end
-end
-
-
-function getMaps()
-	for i = 1, #Path do
-		Maps = Maps + 1
-	end
-end
-
-function mapId()
-	for i = 1, #Path do
-		if getMapName() == Path[i] then
-			return i
-		end
+		log(" ")
+		log("ExpShare | ErrorCode: 003 - Please report on the forum !")
+		fatal(" ")
 	end
 end
 
@@ -86,6 +84,14 @@ function getHealed()
 	end
 end
 
+function trapped()
+	if stringContains(wild, "wrapped") or stringContains(wild, "You can not switch this Pokemon!") or stringContains(wild, "You failed to run away!") or stringContains(wild, "You can not run away!")  then
+		return true
+	else
+		return false
+	end
+end
+
 -- Move Learning
 function onLearningMove(moveName, pokemonIndex)
     local ForgetMoveName
@@ -101,12 +107,9 @@ function onLearningMove(moveName, pokemonIndex)
             end
         end
     end
-    log("==== Learning new Move ====")
     log(" ")
-    log("[Learned] ".. moveName)
-    log("[Forgot ] ".. ForgetMoveName)
+    log("ExpShare | Learning new Move: "..moveName.." (replaced with: "..ForgetMoveName..")")
     log(" ")
-    log("===========================")
     return ForgetMoveName
 end
 
