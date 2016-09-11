@@ -15,7 +15,7 @@ function lastMap()
 end
 
 function getCurrentMap()
-	for i = 1, #Path do
+	for i = 1, #Path, 1 do
 		if getMapName() == Path[i] then
 			return i
 		end
@@ -45,9 +45,9 @@ function mTD()
 end
 
 function hP()
-	if not startMap() then
+	if not firstMap() then
 		moveTo(getCurrentMap() - 1)
-	elseif startMap() then
+	elseif firstMap() then
 		getHealed()
 	else
 		log(" ")
