@@ -84,11 +84,13 @@ function getHealed()
 	end
 end
 
-function trapped()
-	if stringContains(wild, "wrapped") or stringContains(wild, "You can not switch this Pokemon!") or stringContains(wild, "You failed to run away!") or stringContains(wild, "You can not run away!")  then
-		return true
-	else
-		return false
+function onBattleMessage(wild)
+	function trapped()
+		if stringContains(wild, "wrapped") or stringContains(wild, "You can not switch this Pokemon!") or stringContains(wild, "You failed to run away!") or stringContains(wild, "You can not run away!")  then
+			return true
+		else
+			return false
+		end
 	end
 end
 
