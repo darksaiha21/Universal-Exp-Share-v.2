@@ -71,13 +71,19 @@ function onBattleAction()
 				else
 					return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
 				end
+			elseif getActivePokemonNumber() ~= getUsablePokemonCount() then
+				if trapped() then
+					return attack()
+				else
+					return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
+				end
 			end
 		else
 			if getPokemonLevel(getActivePokemonNumber()) >= SwapCap then
 				if trapped() then
 					return attack()
 				else
-					return run()
+					return run() or sendUsablePokemon() or sendAnyPokemon() or attack()
 				end
 			else
 				if trapped() then
@@ -93,7 +99,7 @@ function onBattleAction()
 			if trapped() then
 				return attack()
 			else
-				return run()
+				return run() or sendUsablePokemon() or sendAnyPokemon or attack()
 			end
 		else
 			if trapped() then
