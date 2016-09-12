@@ -16,7 +16,7 @@ function onStart()
 	log(" ")
 	log("=========== WELCOME | START ============")
 	log("Welcome to the Universal ExpSharing by imMigno")
-	log("Version 2.1 a beta | Updated: xx-xx-xxxx | xx.xx AM")
+	log("Version 2.1 c beta | Updated: xx-xx-xxxx | xx.xx AM")
 	log("====================================")
 	log(" ")
 
