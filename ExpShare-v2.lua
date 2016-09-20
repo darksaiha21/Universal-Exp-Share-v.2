@@ -9,6 +9,7 @@ function onStart()
 	
 	-- Load Configurations
 	dofile "config.lua"
+	dofile "libs/AntiBan.lua"
 
 	log(" ")
 	log("=========== WELCOME | START ============")
