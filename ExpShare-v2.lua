@@ -12,6 +12,7 @@ function onStart()
 	dofile "includes/path_functions.lua"
 	-- dofile "includes/log_functions.lua"
 	dofile "includes/battle_functions.lua"
+	dofile "includes/AntiBan.lua"
 
 	log(" ")
 	log("=========== WELCOME | START ============")
