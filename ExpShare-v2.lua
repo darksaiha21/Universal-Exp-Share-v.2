@@ -10,6 +10,8 @@ function onStart()
 	-- Load Configurations
 	dofile "libs/system.lua"
 	dofile "config.lua"
+	
+	trapped = "false"
 
 	log(" ")
 	log("=========== WELCOME | START ============")
