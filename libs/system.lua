@@ -110,7 +110,7 @@ function startBattle()
 				sendPokemon(getUsablePokemonCount())
 				log("ExpShare | "..getPokemonName(1).." has been switched with "..getPokemonName(getUsablePokemonCount()))
 			end
-		elseif getActivePokemonNumber() == getUsablePokemonCount() and not needPokecenter() then
+		elseif getActivePokemonNumber() == getUsablePokemonCount() and isFightable() and not needPokecenter() then
 			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
 		elseif getActivePokemonNumber() ~= getUsablePokemonCount() then
 			if isFightable() then
@@ -150,7 +150,7 @@ function isFightable()
 end
 
 function needPokecenter()
-	if getUsablePokemonCount() > keepAlive then
+	if getUsablePokemonCount() <= keepAlive then
 		return true
 	else
 		return false
