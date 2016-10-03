@@ -142,7 +142,7 @@ function startBattle()
 end
 
 function isFightable()
-	if getPokemonLevel(getActivePokemonNumber()) >= getOpponentLevel() then
+	if getPokemonLevel(getActivePokemonNumber()) >= (getOpponentLevel() + 10 ) then
 		return true
 	else
 		return false

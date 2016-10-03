@@ -1,12 +1,12 @@
-keepAlive = 5
+keepAlive = 4
 
 MaxLevel = 100
 
-LevelLocation = "Route 2"
+LevelLocation = "Victory Road Kanto 3F"
 
-LevelSpot = "Grass"
+LevelSpot = "Rectangle"
 
-minX = 3
-minY = 15
-maxX = 7
-maxY = 18
+minX = 46
+minY = 14
+maxX = 47
+maxY = 22
